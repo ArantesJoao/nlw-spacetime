@@ -10,11 +10,7 @@ const pump = promisify(pipeline)
 
 export async function uploadRoutes(app: FastifyInstance) {
   app.post("/upload", async (request, reply) => {
-    const upload = await request.file({
-      limits: {
-        fileSize: 5_242_880, // 5Mb
-      },
-    })
+    const upload = await request.file()
 
     if (!upload) {
       return reply.status(400).send()
